@@ -41,6 +41,11 @@ const content = {
     portfolioDesc:
       "Osobna web stranica izrađena pomoću Reacta i TypeScripta.",
 
+    exbensiveDesc:
+      "Web aplikacija za praćenje osobnih troškova i konverziju valuta na dnevnoj i mjesečnoj bazi.",
+
+    viewProject: "Pogledaj projekt",
+
     skillsTitle: "Tehnologije i vještine",
 
     contactTitle: "Upoznajmo se",
@@ -88,6 +93,11 @@ const content = {
     portfolioDesc:
       "A personal website built with React and TypeScript.",
 
+    exbensiveDesc:
+      "A web application for tracking personal expenses and currency conversion on a daily and monthly basis.",
+
+    viewProject: "View project",
+
     skillsTitle: "Technologies and skills",
 
     contactTitle: "Let's connect",
@@ -109,6 +119,7 @@ const projects = [
     descriptionKey: "trainerDesc",
     technologies: ["Vue", "Quasar", "Node.js", "MySQL", "REST API"],
     icon: "◈",
+    link: "https://github.com/EdiJozic/Trenerko",
   },
   {
     number: "02",
@@ -125,6 +136,16 @@ const projects = [
     descriptionKey: "portfolioDesc",
     technologies: ["React", "TypeScript", "CSS"],
     icon: "</>",
+    link: "https://github.com/EdiJozic/edi-jozic-portfolio",
+  },
+  {
+    number: "04",
+    name: "Exbensive",
+    category: "WEB APPLICATION",
+    descriptionKey: "exbensiveDesc",
+    technologies: ["Vue", "Quasar", "JavaScript", "Backend"],
+    icon: "€",
+    link: "https://github.com/EdiJozic/Exbensive",
   },
 ];
 
@@ -291,6 +312,17 @@ function App() {
                     <span key={technology}>{technology}</span>
                   ))}
                 </div>
+
+                {project.link && (
+                  <a
+                    className="project-link"
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {t.viewProject} ↗
+                  </a>
+                )}
               </article>
             ))}
           </div>
