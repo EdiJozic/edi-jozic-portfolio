@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 type Language = "HR" | "EN";
@@ -9,7 +8,7 @@ const profile = {
   email: "jozic.edi@gmail.com",
   linkedin:
     "https://www.linkedin.com/in/edi-jo%C5%BEi%C4%87-6b116939a/",
-  github: "https://github.com/",
+  github: "https://github.com/EdiJozic",
 };
 
 const content = {
@@ -153,71 +152,76 @@ const projects = [
 ];
 
 
+
 const skillGroups = [
   {
     titleHR: "Programiranje",
     titleEN: "Programming",
     skills: [
-      "JavaScript",
-      "TypeScript",
-      "Java",
-      "Python",
-      "C",
-      "Objektno orijentirano programiranje",
-      "Algoritmi",
+      { hr: "JavaScript", en: "JavaScript" },
+      { hr: "TypeScript", en: "TypeScript" },
+      { hr: "Java", en: "Java" },
+      { hr: "Python", en: "Python" },
+      { hr: "C", en: "C" },
+      { hr: "Objektno orijentirano programiranje", en: "Object-Oriented Programming" },
+      { hr: "Algoritmi", en: "Algorithms" },
     ],
   },
   {
     titleHR: "Web razvoj",
     titleEN: "Web Development",
     skills: [
-      "HTML5",
-      "CSS3",
-      "React",
-      "Vue.js",
-      "Quasar",
-      "Node.js",
-      "Express.js",
-      "REST API",
-      "Responzivni web dizajn",
+      { hr: "HTML5", en: "HTML5" },
+      { hr: "CSS3", en: "CSS3" },
+      { hr: "React", en: "React" },
+      { hr: "Vue.js", en: "Vue.js" },
+      { hr: "Quasar", en: "Quasar" },
+      { hr: "Node.js", en: "Node.js" },
+      { hr: "Express.js", en: "Express.js" },
+      { hr: "REST API", en: "REST APIs" },
+      { hr: "Responzivni web dizajn", en: "Responsive Web Design" },
     ],
   },
   {
     titleHR: "Baze podataka",
     titleEN: "Databases",
     skills: [
-      "SQL",
-      "MySQL",
-      "NoSQL",
-      "Dizajn baza podataka",
+      { hr: "SQL", en: "SQL" },
+      { hr: "MySQL", en: "MySQL" },
+      { hr: "NoSQL", en: "NoSQL" },
+      { hr: "Dizajn baza podataka", en: "Database Design" },
     ],
   },
   {
     titleHR: "Razvojni alati",
     titleEN: "Development Tools",
-    skills: ["Git", "GitHub", "WordPress"],
+    skills: [
+      { hr: "Git", en: "Git" },
+      { hr: "GitHub", en: "GitHub" },
+      { hr: "WordPress", en: "WordPress" },
+    ],
   },
   {
     titleHR: "Umjetna inteligencija",
     titleEN: "Artificial Intelligence",
     skills: [
-      "AI alati",
-      "Prompt engineering",
-      "Strojno učenje",
+      { hr: "AI alati", en: "AI Tools" },
+      { hr: "Prompt engineering", en: "Prompt Engineering" },
+      { hr: "Strojno učenje", en: "Machine Learning" },
     ],
   },
   {
     titleHR: "Ostalo",
     titleEN: "Other Skills",
     skills: [
-      "Microsoft Office",
-      "UI/UX dizajn",
-      "UML",
-      "3D modeliranje",
-      "Grafički dizajn",
-      "Društvene mreže",
-      "Timski rad",
-      "Rad na računalu",
+      { hr: "Microsoft Office", en: "Microsoft Office" },
+      { hr: "UI/UX dizajn", en: "UI/UX Design" },
+      { hr: "UML", en: "UML" },
+      { hr: "3D modeliranje", en: "3D Modeling" },
+      { hr: "Grafički dizajn", en: "Graphic Design" },
+      { hr: "Društvene mreže", en: "Social Media" },
+      { hr: "Timski rad", en: "Teamwork" },
+      { hr: "Rad na računalu", en: "Computer Literacy" },
     ],
   },
 ];
@@ -226,6 +230,38 @@ function App() {
   const [language, setLanguage] = useState<Language>("HR");
   const [videoOpen, setVideoOpen] = useState(false);
   const t = content[language];
+  
+useEffect(() => {
+  const elements = document.querySelectorAll<HTMLElement>(
+    ".hero-copy, .hero-visual, #about .about-grid, " +
+    "#skills .skills-intro, #skills .skill-group, " +
+    "#projects .projects-intro, #projects .project-card, " +
+    "#contact .contact-panel"
+  );
+
+  elements.forEach((element) => {
+    element.classList.add("reveal-on-scroll");
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.12,
+      rootMargin: "0px 0px -35px 0px",
+    }
+  );
+
+  elements.forEach((element) => observer.observe(element));
+
+  return () => observer.disconnect();
+}, []);
 
   const openProject = (project: (typeof projects)[number]) => {
     if (project.type === "video") {
@@ -323,10 +359,7 @@ function App() {
               </div>
               
             </div>
-            <div className="hero-note">
-              <span className="note-star">✳</span>
-              <span>Learning by building.</span>
-            </div>
+            
           </div>
         </section>
 
@@ -377,11 +410,12 @@ function App() {
         </div>
 
         <div className="skill-tags">
-          {group.skills.map((skill) => (
-            <span className="skill-tag" key={skill}>
-              {skill}
-            </span>
-          ))}
+          
+  {group.skills.map((skill) => (
+  <span className="skill-tag" key={skill.hr}>
+    {language === "HR" ? skill.hr : skill.en}
+  </span>
+  ))}
         </div>
       </div>
     ))}
