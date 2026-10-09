@@ -109,3 +109,82 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+
+/* SKILLS — grouped by category */
+.skill-groups {
+  border-top: 1px solid var(--border);
+}
+
+.skill-group {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 30px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-group-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.skill-group-heading .skill-number {
+  padding-top: 4px;
+  color: var(--green);
+  font-size: 10px;
+}
+
+.skill-group-heading h3 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.skill-tag {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  background: #151610;
+  color: #d5d7cb;
+  font-size: 11px;
+  line-height: 1.4;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.skill-tag:hover {
+  border-color: #687b48;
+  background: #1b2015;
+  color: var(--green);
+}
+
+@media (max-width: 650px) {
+  .skill-group {
+    grid-template-columns: 1fr;
+    gap: 17px;
+    padding: 22px 0;
+  }
+
+  .skill-group-heading h3 {
+    font-size: 15px;
+  }
+
+  .skill-tags {
+    gap: 7px;
+  }
+
+  .skill-tag {
+    padding: 8px 10px;
+    font-size: 10px;
+  }
+}

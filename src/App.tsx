@@ -1,378 +1,552 @@
+
 import { useState } from "react";
 import "./App.css";
-import ediPhoto from "./assets/edi.jpg";
 
-type Language = "hr" | "en";
+type Language = "HR" | "EN";
+
+const profile = {
+  name: "Edi Jožić",
+  email: "jozic.edi@gmail.com",
+  linkedin:
+    "https://www.linkedin.com/in/edi-jo%C5%BEi%C4%87-6b116939a/",
+  github: "https://github.com/",
+};
 
 const content = {
-  hr: {
+  HR: {
     navAbout: "O meni",
-    navProjects: "Projekti",
     navSkills: "Vještine",
+    navProjects: "Projekti",
     navContact: "Kontakt",
-
-    label: "DIPLOMIRANI INFORMATIČAR",
-    greeting: "Bok, ja sam Edi.",
-    role: "Gradim. Učim. Napredujem.",
-
-    intro:
-      "Završio sam studij informatike i tražim priliku za početak profesionalne karijere u razvoju softvera. Volim učiti nove tehnologije i pretvarati ideje u konkretne projekte.",
-
-    projectsButton: "Moji projekti",
-    contactButton: "Kontaktiraj me",
-
-    photo: "Tvoja fotografija",
-
-    aboutTitle: "Nešto o meni",
-
+    available: "OTVOREN ZA JUNIOR PRILIKE",
+    heroGreeting: "Bok, ja sam",
+    heroRole: "Prvostupnik informatike.",
+    heroDescription:
+      "Nedavno sam završio studij informatike i tražim priliku za početak profesionalne karijere u razvoju softvera. Volim učiti nove tehnologije, rješavati probleme i pretvarati ideje u funkcionalne projekte.",
+    viewProjects: "Pogledaj projekte",
+    contactMe: "Kontaktiraj me",
+    aboutLabel: "01 — O MENI",
+    aboutTitle: "Tehnologija, znatiželja i stalno učenje.",
     aboutText:
-      "Bok, ja sam Edi. Nedavno sam završio studij Informatike na Veleučilištu u Rijeci i trenutno tražim priliku za početak svoje profesionalne karijere u IT industriji. Tijekom studija stekao sam iskustvo u radu s različitim tehnologijama i programskim jezicima, uključujući Java, JavaScript, HTML, CSS, SQL i Node.js. Posebno me zanima web development, zbog čega trenutno dodatno učim React, TypeScript i moderne pristupe razvoju web aplikacija. Kroz fakultetske projekte radio sam na razvoju aplikacija, radu s bazama podataka i povezivanju različitih tehnologija u funkcionalne sustave. Jedan od većih projekata bio je Trenerko, web platforma za sportske i fitness objekte razvijena uz Vue, Quasar, Node.js i MySQL. Također sam kroz završni rad radio na izradi 3D modela informatičke učionice, animaciji kamere i izradi promotivnog videa u Blenderu. Najviše me motivira učenje novih tehnologija i rješavanje konkretnih problema kroz programiranje. Trenutno tražim juniorsku poziciju na kojoj bih mogao primijeniti dosadašnje znanje, nastaviti učiti od iskusnijih kolega i postupno graditi svoje iskustvo kao developer.",
-
-    projectsTitle: "Izdvojeni projekti",
-    projectsIntro:
-      "Projekti na kojima sam radio i kroz koje nastavljam učiti.",
-
-    trainerDesc:
-      "Platforma za sportske objekte, programe, pretraživanje i planiranje aktivnosti.",
-
-    blenderDesc:
-      "3D model informatičke učionice s animacijom kamere i promotivnim videom.",
-
-    portfolioDesc:
-      "Osobna web stranica izrađena pomoću Reacta i TypeScripta.",
-
-    exbensiveDesc:
-      "Web aplikacija za praćenje osobnih troškova i konverziju valuta na dnevnoj i mjesečnoj bazi.",
-
-    viewProject: "Pogledaj projekt",
-
-    skillsTitle: "Tehnologije i vještine",
-
-    contactTitle: "Upoznajmo se",
-
+      "Završio sam studij informatike na Veleučilištu u Rijeci. Kroz fakultetske projekte stekao sam iskustvo u razvoju web aplikacija, radu s bazama podataka i izradi 3D sadržaja. Sada tražim junior poziciju na kojoj mogu dalje razvijati svoje znanje i doprinositi timu.",
+    educationLabel: "OBRAZOVANJE",
+    educationTitle: "Prvostupnik informatike",
+    educationPlace: "Veleučilište u Rijeci",
+    skillsLabel: "02 — VJEŠTINE",
+    skillsTitle: "Tehnologije s kojima radim.",
+    skillsText:
+      "Znanja stečena kroz studij, osobne projekte i samostalno učenje.",
+    projectsLabel: "03 — ODABRANI RADOVI",
+    projectsTitle: "Projekti na kojima sam radio.",
+    projectsText:
+      "Od web aplikacija do 3D vizualizacije — projekti kroz koje razvijam svoje vještine.",
+    github: "Otvori GitHub",
+    watchVideo: "Pogledaj 3D video",
+    contactLabel: "04 — JAVIMO SE",
+    contactTitle: "Imate projekt ili junior priliku?",
     contactText:
-      "Tražim priliku za početak profesionalne karijere i otvoren sam za junior pozicije.",
-
-    emailButton: "Pošalji mi e-mail",
-
-    footer: "Izrađeno s Reactom i željom za učenjem.",
+      "Rado ću razgovarati o junior pozicijama, suradnji ili projektima na kojima mogu učiti i doprinositi.",
+    emailLabel: "E-mail",
+    linkedinLabel: "LinkedIn",
+    githubLabel: "GitHub",
+    emailCta: "Pošalji mi poruku",
+    footer: "Izrađeno s Reactom, TypeScriptom i znatiželjom.",
+    backTop: "Natrag na vrh ↑",
+    closeVideo: "Zatvori video",
   },
-
-  en: {
+  EN: {
     navAbout: "About",
-    navProjects: "Projects",
     navSkills: "Skills",
+    navProjects: "Projects",
     navContact: "Contact",
-
-    label: "INFORMATICS GRADUATE",
-    greeting: "Hi, I'm Edi.",
-    role: "Building. Learning. Growing.",
-
-    intro:
-      "I have completed my Informatics degree and am looking for an opportunity to start my professional career in software development. I enjoy learning new technologies and turning ideas into real projects.",
-
-    projectsButton: "View projects",
-    contactButton: "Get in touch",
-
-    photo: "Your photo",
-
-    aboutTitle: "A little about me",
-
+    available: "OPEN TO JUNIOR OPPORTUNITIES",
+    heroGreeting: "Hi, I'm",
+    heroRole: "Informatics graduate.",
+    heroDescription:
+      "I recently graduated in Informatics and am looking for an opportunity to start my professional career in software development. I enjoy learning new technologies, solving problems, and turning ideas into functional projects.",
+    viewProjects: "View projects",
+    contactMe: "Contact me",
+    aboutLabel: "01 — ABOUT ME",
+    aboutTitle: "Technology, curiosity, and continuous learning.",
     aboutText:
-      "Hi, I'm Edi. I recently completed my degree in Informatics at the University of Applied Sciences in Rijeka, and I am currently looking for an opportunity to start my professional career in the IT industry. During my studies, I gained experience working with different technologies and programming languages, including Java, JavaScript, HTML, CSS, SQL, and Node.js. I am particularly interested in web development, which is why I am currently expanding my knowledge of React, TypeScript, and modern approaches to building web applications. Throughout my studies, I worked on various projects involving application development, databases, and connecting different technologies into functional systems. One of my main projects was Trenerko, a web platform for sports and fitness facilities built with Vue, Quasar, Node.js, and MySQL. For my final thesis, I also created a realistic 3D model of an IT classroom, developed camera animations, and created a promotional video using Blender. What motivates me most is learning new technologies and solving real-world problems through programming. I am currently looking for a junior position where I can apply the knowledge I have gained, learn from experienced developers, and continue growing as a software developer.",
-
-    projectsTitle: "Featured projects",
-    projectsIntro: "Projects I've worked on and continue learning from.",
-
-    trainerDesc:
-      "A platform for sports facilities, programs, searching and activity planning.",
-
-    blenderDesc:
-      "A 3D model of an IT classroom featuring camera animation and a promotional video.",
-
-    portfolioDesc:
-      "A personal website built with React and TypeScript.",
-
-    exbensiveDesc:
-      "A web application for tracking personal expenses and currency conversion on a daily and monthly basis.",
-
-    viewProject: "View project",
-
-    skillsTitle: "Technologies and skills",
-
-    contactTitle: "Let's connect",
-
+      "I graduated in Informatics from the Polytechnic of Rijeka. Through university projects, I gained experience in web application development, working with databases, and creating 3D content. I am now looking for a junior role where I can keep learning and contribute to a team.",
+    educationLabel: "EDUCATION",
+    educationTitle: "Bachelor's degree in Informatics",
+    educationPlace: "Polytechnic of Rijeka",
+    skillsLabel: "02 — SKILLS",
+    skillsTitle: "Technologies I work with.",
+    skillsText:
+      "Knowledge gained through university, personal projects, and independent learning.",
+    projectsLabel: "03 — SELECTED WORK",
+    projectsTitle: "Projects I've worked on.",
+    projectsText:
+      "From web applications to 3D visualization — projects that help me develop my skills.",
+    github: "View on GitHub",
+    watchVideo: "Watch 3D video",
+    contactLabel: "04 — LET'S CONNECT",
+    contactTitle: "Have a project or a junior opportunity?",
     contactText:
-      "I'm looking for an opportunity to start my professional career and am open to junior positions.",
-
-    emailButton: "Send me an email",
-
-    footer: "Built with React and a passion for learning.",
+      "I'd be happy to talk about junior roles, collaboration, or projects where I can learn and contribute.",
+    emailLabel: "Email",
+    linkedinLabel: "LinkedIn",
+    githubLabel: "GitHub",
+    emailCta: "Send me a message",
+    footer: "Built with React, TypeScript, and curiosity.",
+    backTop: "Back to top ↑",
+    closeVideo: "Close video",
   },
 };
 
 const projects = [
   {
     number: "01",
-    name: "Trenerko",
+    title: "Trenerko",
     category: "WEB APPLICATION",
-    descriptionKey: "trainerDesc",
-    technologies: ["Vue", "Quasar", "Node.js", "MySQL", "REST API"],
-    icon: "◈",
+    descriptionHR:
+      "Web platforma za sport i fitness s kartom objekata, programima, cijenama i korisničkim funkcionalnostima.",
+    descriptionEN:
+      "A sports and fitness platform featuring facility maps, programs, prices, and user functionality.",
+    technologies: ["Vue", "Quasar", "Node.js", "Express", "MySQL"],
+    type: "github",
     link: "https://github.com/EdiJozic/Trenerko",
+    symbol: "↗",
   },
   {
     number: "02",
-    name: "3D informatička učionica",
-    category: "3D & ANIMATION",
-    descriptionKey: "blenderDesc",
-    technologies: ["Blender", "3D Modeling", "Animation"],
-    icon: "⬡",
+    title: "3D Classroom",
+    category: "3D VISUALIZATION",
+    descriptionHR:
+      "Realističan 3D model informatičke učionice izrađen u Blenderu, uz animaciju kamere i promotivni video.",
+    descriptionEN:
+      "A realistic 3D model of an informatics classroom created in Blender, featuring camera animation and a promotional video.",
+    technologies: ["Blender", "3D Modeling", "Animation", "Rendering"],
+    type: "video",
+    link: "/0250-2500.mp4",
+    symbol: "▶",
   },
   {
     number: "03",
-    name: "Personal Portfolio",
-    category: "WEB DEVELOPMENT",
-    descriptionKey: "portfolioDesc",
-    technologies: ["React", "TypeScript", "CSS"],
-    icon: "</>",
-    link: "https://github.com/EdiJozic/edi-jozic-portfolio",
+    title: "Exbensive",
+    category: "WEB APPLICATION",
+    descriptionHR:
+      "Aplikacija za praćenje troškova i upravljanje osobnim financijama uz funkcionalnosti konverzije valuta.",
+    descriptionEN:
+      "An expense tracking and personal finance application with currency conversion functionality.",
+    technologies: ["Vue", "Quasar", "JavaScript"],
+    type: "github",
+    link: "https://github.com/EdiJozic/Exbensive",
+    symbol: "↗",
   },
   {
     number: "04",
-    name: "Exbensive",
-    category: "WEB APPLICATION",
-    descriptionKey: "exbensiveDesc",
-    technologies: ["Vue", "Quasar", "JavaScript", "Backend"],
-    icon: "€",
-    link: "https://github.com/EdiJozic/Exbensive",
+    title: "Personal Portfolio",
+    category: "WEB DEVELOPMENT",
+    descriptionHR:
+      "Osobna portfolio stranica izrađena za predstavljanje mojih projekata, vještina i profesionalnog profila.",
+    descriptionEN:
+      "A personal portfolio website built to showcase my projects, skills, and professional profile.",
+    technologies: ["React", "TypeScript", "CSS"],
+    type: "github",
+    link: "https://github.com/EdiJozic/edi-jozic-portfolio",
+    symbol: "↗",
   },
 ];
 
-const skills = [
-  "Java",
-  "JavaScript",
-  "React",
-  "HTML & CSS",
-  "SQL",
-  "Node.js",
-  "Git",
-  "Python",
-  "Linux",
-  "Blender",
-  "REST API",
-  "Machine Learning",
-  "AI",
-  "Problem Solving",
-  "Teamwork",
-  "Express.js",
-  "Vue.js",
-  "Figma",
-  "Data Modeling",
+
+const skillGroups = [
+  {
+    titleHR: "Programiranje",
+    titleEN: "Programming",
+    skills: [
+      "JavaScript",
+      "TypeScript",
+      "Java",
+      "Python",
+      "C",
+      "Objektno orijentirano programiranje",
+      "Algoritmi",
+    ],
+  },
+  {
+    titleHR: "Web razvoj",
+    titleEN: "Web Development",
+    skills: [
+      "HTML5",
+      "CSS3",
+      "React",
+      "Vue.js",
+      "Quasar",
+      "Node.js",
+      "Express.js",
+      "REST API",
+      "Responzivni web dizajn",
+    ],
+  },
+  {
+    titleHR: "Baze podataka",
+    titleEN: "Databases",
+    skills: [
+      "SQL",
+      "MySQL",
+      "NoSQL",
+      "Dizajn baza podataka",
+    ],
+  },
+  {
+    titleHR: "Razvojni alati",
+    titleEN: "Development Tools",
+    skills: ["Git", "GitHub", "WordPress"],
+  },
+  {
+    titleHR: "Umjetna inteligencija",
+    titleEN: "Artificial Intelligence",
+    skills: [
+      "AI alati",
+      "Prompt engineering",
+      "Strojno učenje",
+    ],
+  },
+  {
+    titleHR: "Ostalo",
+    titleEN: "Other Skills",
+    skills: [
+      "Microsoft Office",
+      "UI/UX dizajn",
+      "UML",
+      "3D modeliranje",
+      "Grafički dizajn",
+      "Društvene mreže",
+      "Timski rad",
+      "Rad na računalu",
+    ],
+  },
 ];
 
 function App() {
-  const [language, setLanguage] = useState<Language>("hr");
-
+  const [language, setLanguage] = useState<Language>("HR");
+  const [videoOpen, setVideoOpen] = useState(false);
   const t = content[language];
 
-  const gmailLink =
-    "https://mail.google.com/mail/?view=cm&fs=1&to=jozic.edi@gmail.com";
+  const openProject = (project: (typeof projects)[number]) => {
+    if (project.type === "video") {
+      setVideoOpen(true);
+    } else {
+      window.open(project.link, "_blank", "noopener,noreferrer");
+    }
+  };
 
   return (
-    <div className="portfolio">
-      <header className="navbar">
-        <a className="brand" href="#home">
-          E<span>.</span>J
+    <div className="portfolio" id="home">
+      <header className="site-header">
+        <a className="wordmark" href="#home" aria-label="Edi Jožić home">
+          EJ<span>.</span>
         </a>
 
-        <nav className="nav-links">
+        <nav className="main-nav">
           <a href="#about">{t.navAbout}</a>
-          <a href="#projects">{t.navProjects}</a>
           <a href="#skills">{t.navSkills}</a>
+          <a href="#projects">{t.navProjects}</a>
           <a href="#contact">{t.navContact}</a>
         </nav>
 
-        <button
-          className="language-button"
-          onClick={() =>
-            setLanguage((current) => (current === "hr" ? "en" : "hr"))
-          }
-        >
-          {language === "hr" ? "EN ↗" : "HR ↗"}
-        </button>
+        <div className="header-actions">
+          <button
+            className="language-switch"
+            onClick={() =>
+              setLanguage((current) => (current === "HR" ? "EN" : "HR"))
+            }
+            aria-label="Change language"
+          >
+            <span className={language === "HR" ? "active-language" : ""}>
+              HR
+            </span>
+            <span className="language-divider">/</span>
+            <span className={language === "EN" ? "active-language" : ""}>
+              EN
+            </span>
+          </button>
+          <a className="header-contact" href="#contact">
+            {t.contactMe} <span>↗</span>
+          </a>
+        </div>
       </header>
 
       <main>
-        {/* HERO */}
-        <section className="hero section" id="home">
-          <div className="hero-content">
-            <p className="eyebrow">
+        <section className="hero section-shell">
+          <div className="hero-copy">
+            <div className="availability">
               <span className="status-dot" />
-              {t.label} · CROATIA
-            </p>
+              {t.available}
+            </div>
 
-            <h1>{t.greeting}</h1>
-
-            <h2>{t.role}</h2>
-
-            <p className="hero-description">{t.intro}</p>
+            <p className="hero-greeting">{t.heroGreeting},</p>
+            <h1>
+              Edi <span>Jožić.</span>
+            </h1>
+            <h2>{t.heroRole}</h2>
+            <p className="hero-description">{t.heroDescription}</p>
 
             <div className="hero-buttons">
-              <a className="button primary" href="#projects">
-                {t.projectsButton} <span>↗</span>
+              <a className="button button-primary" href="#projects">
+                {t.viewProjects} <span>↘</span>
               </a>
-
-              <a
-                className="button secondary"
-                href={gmailLink}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {t.contactButton}
+              <a className="button button-secondary" href="#contact">
+                {t.contactMe} <span>↗</span>
               </a>
             </div>
 
-            <div className="social-links">
-              <a
-                href="https://github.com/EdiJozic"
-                target="_blank"
-                rel="noreferrer"
-              >
+            <div className="hero-socials">
+              <a href={profile.github} target="_blank" rel="noreferrer">
                 GitHub ↗
               </a>
-
-              <a
-                href="https://www.linkedin.com/in/edi-jo%C5%BEi%C4%87-6b116939a/"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a href={profile.linkedin} target="_blank" rel="noreferrer">
                 LinkedIn ↗
+              </a>
+              <a href={`mailto:${profile.email}`}>Email ↗</a>
+            </div>
+          </div>
+
+          <div className="hero-visual">
+            <div className="photo-frame">
+              <div className="photo-topline">
+                <span>PORTFOLIO / 2026</span>
+                <span>01—04</span>
+              </div>
+              <img
+                className="profile-photo"
+                src="/edi.jpg"
+                alt="Edi Jožić"
+              />
+              <div className="photo-caption">
+                <span>EDI JOŽIĆ</span>
+                <span>INFORMATICS GRADUATE</span>
+              </div>
+              
+            </div>
+            <div className="hero-note">
+              <span className="note-star">✳</span>
+              <span>Learning by building.</span>
+            </div>
+          </div>
+        </section>
+
+        <section className="section-shell section-block" id="about">
+          <div className="section-heading">
+            <p className="section-label">{t.aboutLabel}</p>
+            <span className="section-line" />
+          </div>
+
+          <div className="about-grid">
+            <h2 className="section-title">{t.aboutTitle}</h2>
+            <div className="about-copy">
+              <p>{t.aboutText}</p>
+              <div className="education-card">
+                <span className="education-icon">↗</span>
+                <div>
+                  <span className="card-overline">{t.educationLabel}</span>
+                  <h3>{t.educationTitle}</h3>
+                  <p>{t.educationPlace}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        
+<section className="section-shell section-block" id="skills">
+  <div className="section-heading">
+    <p className="section-label">{t.skillsLabel}</p>
+    <span className="section-line" />
+  </div>
+
+  <div className="skills-intro">
+    <h2 className="section-title">{t.skillsTitle}</h2>
+    <p>{t.skillsText}</p>
+  </div>
+
+  <div className="skill-groups">
+    {skillGroups.map((group, index) => (
+      <div className="skill-group" key={group.titleHR}>
+        <div className="skill-group-heading">
+          <span className="skill-number">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <h3>
+            {language === "HR" ? group.titleHR : group.titleEN}
+          </h3>
+        </div>
+
+        <div className="skill-tags">
+          {group.skills.map((skill) => (
+            <span className="skill-tag" key={skill}>
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+        <section className="section-shell section-block" id="projects">
+          <div className="section-heading">
+            <p className="section-label">{t.projectsLabel}</p>
+            <span className="section-line" />
+          </div>
+
+          <div className="projects-intro">
+            <h2 className="section-title">{t.projectsTitle}</h2>
+            <p>{t.projectsText}</p>
+          </div>
+
+          <div className="projects-grid">
+            {projects.map((project) => (
+              <button
+                type="button"
+                className={`project-card ${
+                  project.type === "video" ? "video-project" : ""
+                }`}
+                key={project.number}
+                onClick={() => openProject(project)}
+              >
+                <div className="project-card-top">
+                  <span className="project-number">{project.number}</span>
+                  <span className="project-category">{project.category}</span>
+                  <span className="project-arrow">{project.symbol}</span>
+                </div>
+
+                <div className="project-preview">
+                  {project.type === "video" ? (
+                    <div className="preview-3d">
+                      <span className="preview-grid" />
+                      <span className="preview-cube">◇</span>
+                      <span className="preview-play">▶</span>
+                      <span className="preview-label">BLENDER / RENDER</span>
+                    </div>
+                  ) : (
+                    <div className="preview-code">
+                      <span className="code-line code-line-short" />
+                      <span className="code-line" />
+                      <span className="code-line code-line-medium" />
+                      <span className="code-line code-line-short" />
+                      <span className="code-line code-line-long" />
+                      <span className="code-prompt">&gt; build something useful_</span>
+                    </div>
+                  )}
+                </div>
+
+                <div className="project-content">
+                  <h3>{project.title}</h3>
+                  <p>
+                    {language === "HR"
+                      ? project.descriptionHR
+                      : project.descriptionEN}
+                  </p>
+                  <div className="project-tags">
+                    {project.technologies.map((technology) => (
+                      <span key={technology}>{technology}</span>
+                    ))}
+                  </div>
+                  <div className="project-link">
+                    {project.type === "video" ? t.watchVideo : t.github}
+                    <span>{project.symbol}</span>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-shell section-block" id="contact">
+          <div className="section-heading">
+            <p className="section-label">{t.contactLabel}</p>
+            <span className="section-line" />
+          </div>
+
+          <div className="contact-panel">
+            <div className="contact-copy">
+              <p className="contact-kicker">OPEN TO OPPORTUNITIES</p>
+              <h2>{t.contactTitle}</h2>
+              <p className="contact-description">{t.contactText}</p>
+              <a
+                className="button button-primary contact-button"
+                href={`mailto:${profile.email}`}
+              >
+                {t.emailCta} <span>↗</span>
+              </a>
+            </div>
+
+            <div className="contact-links">
+              <a href={`mailto:${profile.email}`}>
+                <span>{t.emailLabel}</span>
+                <strong>{profile.email}</strong>
+                <span className="contact-link-arrow">↗</span>
+              </a>
+              <a href={profile.linkedin} target="_blank" rel="noreferrer">
+                <span>{t.linkedinLabel}</span>
+                <strong>LinkedIn profile</strong>
+                <span className="contact-link-arrow">↗</span>
+              </a>
+              <a href={profile.github} target="_blank" rel="noreferrer">
+                <span>{t.githubLabel}</span>
+                <strong>GitHub profile</strong>
+                <span className="contact-link-arrow">↗</span>
               </a>
             </div>
           </div>
-
-          {/* PHOTO */}
-          <div className="hero-visual">
-            <div className="photo-frame">
-              <div className="photo-placeholder">
-                <img src={ediPhoto} alt="Edi Jožić" />
-              </div>
-
-              <div className="photo-decoration" />
-            </div>
-
-            <div className="floating-tag">
-              <span className="status-dot" />
-              Open to opportunities
-            </div>
-          </div>
-        </section>
-
-        {/* ABOUT */}
-        <section className="section about-section" id="about">
-          <p className="eyebrow">01 / ABOUT</p>
-
-          <h2 className="section-title">{t.aboutTitle}</h2>
-
-          <p className="section-description">{t.aboutText}</p>
-        </section>
-
-        {/* PROJECTS */}
-        <section className="section" id="projects">
-          <p className="eyebrow">02 / SELECTED WORK</p>
-
-          <h2 className="section-title">{t.projectsTitle}</h2>
-
-          <p className="section-description">{t.projectsIntro}</p>
-
-          <div className="project-grid">
-            {projects.map((project) => (
-              <article className="project-card" key={project.number}>
-                <div className="project-top">
-                  <span className="project-icon">{project.icon}</span>
-
-                  <span className="project-number">
-                    {project.number}
-                  </span>
-                </div>
-
-                <p className="project-category">
-                  {project.category}
-                </p>
-
-                <h3>{project.name}</h3>
-
-                <p className="project-description">
-                  {t[project.descriptionKey as keyof typeof t]}
-                </p>
-
-                <div className="tech-list">
-                  {project.technologies.map((technology) => (
-                    <span key={technology}>{technology}</span>
-                  ))}
-                </div>
-
-                {project.link && (
-                  <a
-                    className="project-link"
-                    href={project.link}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {t.viewProject} ↗
-                  </a>
-                )}
-              </article>
-            ))}
-          </div>
-        </section>
-
-        {/* SKILLS */}
-        <section className="section" id="skills">
-          <p className="eyebrow">03 / TOOLKIT</p>
-
-          <h2 className="section-title">{t.skillsTitle}</h2>
-
-          <div className="skills-grid">
-            {skills.map((skill) => (
-              <span className="skill-item" key={skill}>
-                <span className="skill-check">↗</span>
-                {skill}
-              </span>
-            ))}
-          </div>
-        </section>
-
-        {/* CONTACT */}
-        <section className="section contact-section" id="contact">
-          <p className="eyebrow">04 / CONTACT</p>
-
-          <h2 className="section-title">{t.contactTitle}</h2>
-
-          <p className="section-description">{t.contactText}</p>
-
-          <a
-            className="button primary"
-            href={gmailLink}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {t.emailButton} ↗
-          </a>
         </section>
       </main>
 
-      {/* FOOTER */}
-      <footer className="footer">
-        <a className="brand" href="#home">
-          E<span>.</span>J
+      <footer className="site-footer section-shell">
+        <a className="wordmark" href="#home">
+          EJ<span>.</span>
         </a>
-
-        <p>© {new Date().getFullYear()} Edi Jožić</p>
-
-        <p>{t.footer}</p>
+        <p>
+          © {new Date().getFullYear()} Edi Jožić. {t.footer}
+        </p>
+        <a href="#home">{t.backTop}</a>
       </footer>
+
+      {videoOpen && (
+        <div
+          className="video-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label="3D Classroom video"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) {
+              setVideoOpen(false);
+            }
+          }}
+        >
+          <div className="video-modal-content">
+            <div className="video-modal-header">
+              <div>
+                <span className="video-modal-overline">PROJECT 02</span>
+                <h2>3D Classroom</h2>
+              </div>
+              <button
+                type="button"
+                className="video-close"
+                onClick={() => setVideoOpen(false)}
+                aria-label={t.closeVideo}
+              >
+                ✕ <span>{t.closeVideo}</span>
+              </button>
+            </div>
+            <video
+              className="project-video"
+              controls
+              autoPlay
+              playsInline
+              preload="metadata"
+            >
+              <source src="/0250-2500.mp4" type="video/mp4" />
+              Your browser does not support HTML video.
+            </video>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
