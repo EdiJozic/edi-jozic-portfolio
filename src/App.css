@@ -508,3 +508,13 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+
+@media (max-width: 768px) {
+  h1,
+  h2,
+  h3,
+  .hero-title,
+  .section-title {
+    color: #ffffff;
+  }
+}
