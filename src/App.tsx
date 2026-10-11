@@ -40,6 +40,7 @@ const content = {
     projectsText:
       "Od web aplikacija do 3D vizualizacije — projekti kroz koje razvijam svoje vještine.",
     github: "Otvori GitHub",
+    video: "Pogledaj video",
     watchVideo: "Pogledaj 3D video",
     contactLabel: "04 — JAVIMO SE",
     contactTitle: "Imate projekt ili junior priliku?",
@@ -99,6 +100,48 @@ const content = {
 const projects = [
   {
     number: "01",
+    title: "Kuća Jožić",
+    category: "WEB APPLICATION",
+    descriptionHR:
+      "Digitalni vodič za smještaj Kuća Jožić s galerijom, kalendarom dostupnosti i preporukama za restorane i trgovine u okolici.",
+    descriptionEN:
+      "A digital guide for Kuća Jožić accommodation, featuring a photo gallery, availability calendar, and nearby restaurant and shop recommendations.",
+    technologies: ["React", "TypeScript", "Supabase", "Leaflet"],
+    type: "github",
+    link: "https://kuca-jozic.vercel.app/",
+    previewImage: "/kuca-jozic-hero.png",
+    symbol: "↗",
+  },
+  {
+    number: "02",
+    title: "Personal Portfolio",
+    category: "WEB DEVELOPMENT",
+    descriptionHR:
+      "Osobna portfolio stranica izrađena za predstavljanje mojih projekata, vještina i profesionalnog profila.",
+    descriptionEN:
+      "A personal portfolio website built to showcase my projects, skills, and professional profile.",
+    technologies: ["React", "TypeScript", "CSS"],
+    type: "github",
+    link: "https://github.com/EdiJozic/edi-jozic-portfolio",
+    previewImage: "/portfolio-site-preview.png",
+    symbol: "↗",
+  },
+  {
+    number: "03",
+    title: "3D Classroom",
+    category: "3D VISUALIZATION",
+    descriptionHR:
+      "Realističan 3D model informatičke učionice izrađen u Blenderu, uz animaciju kamere i promotivni video.",
+    descriptionEN:
+      "A realistic 3D model of an informatics classroom created in Blender, featuring camera animation and a promotional video.",
+    technologies: ["Blender", "3D Modeling", "Animation", "Rendering"],
+    type: "video",
+    link: "/0250-2500.mp4",
+    previewImage: "/zavrsni_r1.png",
+    symbol: "▶",
+  },
+  {
+    number: "04",
     title: "Trenerko",
     category: "WEB APPLICATION",
     descriptionHR:
@@ -111,20 +154,7 @@ const projects = [
     symbol: "↗",
   },
   {
-    number: "02",
-    title: "3D Classroom",
-    category: "3D VISUALIZATION",
-    descriptionHR:
-      "Realističan 3D model informatičke učionice izrađen u Blenderu, uz animaciju kamere i promotivni video.",
-    descriptionEN:
-      "A realistic 3D model of an informatics classroom created in Blender, featuring camera animation and a promotional video.",
-    technologies: ["Blender", "3D Modeling", "Animation", "Rendering"],
-    type: "video",
-    link: "/0250-2500.mp4",
-    symbol: "▶",
-  },
-  {
-    number: "03",
+    number: "05",
     title: "Exbensive",
     category: "WEB APPLICATION",
     descriptionHR:
@@ -134,19 +164,6 @@ const projects = [
     technologies: ["Vue", "Quasar", "JavaScript"],
     type: "github",
     link: "https://github.com/EdiJozic/Exbensive",
-    symbol: "↗",
-  },
-  {
-    number: "04",
-    title: "Personal Portfolio",
-    category: "WEB DEVELOPMENT",
-    descriptionHR:
-      "Osobna portfolio stranica izrađena za predstavljanje mojih projekata, vještina i profesionalnog profila.",
-    descriptionEN:
-      "A personal portfolio website built to showcase my projects, skills, and professional profile.",
-    technologies: ["React", "TypeScript", "CSS"],
-    type: "github",
-    link: "https://github.com/EdiJozic/edi-jozic-portfolio",
     symbol: "↗",
   },
 ];
@@ -346,7 +363,7 @@ useEffect(() => {
             <div className="photo-frame">
               <div className="photo-topline">
                 <span>PORTFOLIO / 2026</span>
-                <span>01—04</span>
+                <span>01—05</span>
               </div>
               <img
                 className="profile-photo"
@@ -439,6 +456,8 @@ useEffect(() => {
                 type="button"
                 className={`project-card ${
                   project.type === "video" ? "video-project" : ""
+                } ${
+                  "previewImage" in project ? "project-card-website" : ""
                 }`}
                 key={project.number}
                 onClick={() => openProject(project)}
@@ -450,7 +469,22 @@ useEffect(() => {
                 </div>
 
                 <div className="project-preview">
-                  {project.type === "video" ? (
+                  {"previewImage" in project && project.previewImage ? (
+                    <div className="project-image-preview">
+                      <img
+                        className="project-preview-image"
+                        src={project.previewImage}
+                        alt={
+                          project.type === "video"
+                            ? `${project.title} 3D render`
+                            : `Screenshot of the ${project.title} website`
+                        }
+                      />
+                      {project.type === "video" && (
+                        <span className="preview-play">▶</span>
+                      )}
+                    </div>
+                  ) : project.type === "video" ? (
                     <div className="preview-3d">
                       <span className="preview-grid" />
                       <span className="preview-cube">◇</span>
@@ -556,7 +590,7 @@ useEffect(() => {
           <div className="video-modal-content">
             <div className="video-modal-header">
               <div>
-                <span className="video-modal-overline">PROJECT 02</span>
+                <span className="video-modal-overline">PROJECT 03</span>
                 <h2>3D Classroom</h2>
               </div>
               <button
