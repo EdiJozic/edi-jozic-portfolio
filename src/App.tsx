@@ -41,6 +41,7 @@ const content = {
       "Od web aplikacija do 3D vizualizacije — projekti kroz koje razvijam svoje vještine.",
     github: "Otvori GitHub",
     video: "Pogledaj video",
+    website: "Pogledaj web stranicu",
     watchVideo: "Pogledaj 3D video",
     contactLabel: "04 — JAVIMO SE",
     contactTitle: "Imate projekt ili junior priliku?",
@@ -83,6 +84,7 @@ const content = {
       "From web applications to 3D visualization — projects that help me develop my skills.",
     github: "View on GitHub",
     watchVideo: "Watch 3D video",
+    website: "View website",
     contactLabel: "04 — LET'S CONNECT",
     contactTitle: "Have a project or a junior opportunity?",
     contactText:
@@ -107,7 +109,7 @@ const projects = [
     descriptionEN:
       "A digital guide for Kuća Jožić accommodation, featuring a photo gallery, availability calendar, and nearby restaurant and shop recommendations.",
     technologies: ["React", "TypeScript", "Supabase", "Leaflet"],
-    type: "github",
+    type: "website",
     link: "https://kuca-jozic.vercel.app/",
     previewImage: "/kuca-jozic-hero.png",
     symbol: "↗",
@@ -151,6 +153,7 @@ const projects = [
     technologies: ["Vue", "Quasar", "Node.js", "Express", "MySQL"],
     type: "github",
     link: "https://github.com/EdiJozic/Trenerko",
+    previewImage: "/trenerko-homepage.png",
     symbol: "↗",
   },
   {
@@ -164,6 +167,7 @@ const projects = [
     technologies: ["Vue", "Quasar", "JavaScript"],
     type: "github",
     link: "https://github.com/EdiJozic/Exbensive",
+    previewImage: "/exbensive-dashboard.png",
     symbol: "↗",
   },
 ];
@@ -516,7 +520,11 @@ useEffect(() => {
                     ))}
                   </div>
                   <div className="project-link">
-                    {project.type === "video" ? t.watchVideo : t.github}
+                    {project.type === "video"
+                      ? t.watchVideo
+                      : project.type === "website"
+                        ? t.website
+                        : t.github}
                     <span>{project.symbol}</span>
                   </div>
                 </div>
