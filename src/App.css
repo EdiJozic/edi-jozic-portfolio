@@ -529,6 +529,10 @@ a:focus-visible {
   font-size: 11px;
 }
 
+.education-link {
+  margin-top: 16px;
+}
+
 /* SKILLS */
 
 .skills-intro,

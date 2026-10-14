@@ -31,6 +31,7 @@ const content = {
     educationLabel: "OBRAZOVANJE",
     educationTitle: "Prvostupnik informatike",
     educationPlace: "Veleučilište u Rijeci",
+    viewDiploma: "Pogledaj diplomu",
     skillsLabel: "02 — VJEŠTINE",
     skillsTitle: "Tehnologije s kojima radim.",
     skillsText:
@@ -74,6 +75,7 @@ const content = {
     educationLabel: "EDUCATION",
     educationTitle: "Bachelor's degree in Informatics",
     educationPlace: "Polytechnic of Rijeka",
+    viewDiploma: "View diploma",
     skillsLabel: "02 — SKILLS",
     skillsTitle: "Technologies I work with.",
     skillsText:
@@ -400,6 +402,18 @@ useEffect(() => {
                   <span className="card-overline">{t.educationLabel}</span>
                   <h3>{t.educationTitle}</h3>
                   <p>{t.educationPlace}</p>
+                  <a
+                    className="button button-primary education-link"
+                    href={
+                      language === "HR"
+                        ? "/diploma_hr_Jo%C5%BEi%C4%87_Edi.pdf"
+                        : "/diploma_en_Jo%C5%BEi%C4%87_Edi.pdf"
+                    }
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {t.viewDiploma} <span>↗</span>
+                  </a>
                 </div>
               </div>
             </div>
