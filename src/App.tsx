@@ -113,6 +113,7 @@ const projects = [
     technologies: ["Next.js", "TypeScript", "Supabase", "Anthropic AI"],
     type: "website",
     link: "https://triply-one-xi.vercel.app/",
+    previewImage: "/triply-homepage.png",
     symbol: "↗",
   },
   {
