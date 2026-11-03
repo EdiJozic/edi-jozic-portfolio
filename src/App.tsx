@@ -118,6 +118,20 @@ const projects = [
   },
   {
     number: "02",
+    title: "DevPilot",
+    category: "DEVELOPER WORKSPACE",
+    descriptionHR:
+      "Radni prostor za razvojne timove s upravljanjem projektima, zadacima i bugovima, analitikom, GitHub pregledom i AI asistentom.",
+    descriptionEN:
+      "A developer workspace for managing projects, tasks, and bugs, with analytics, GitHub activity, and an AI assistant.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
+    type: "website",
+    link: "https://edi-jozic-portfolio-sskb.vercel.app/",
+    previewImage: "/devpilot-homepage.png",
+    symbol: "↗",
+  },
+  {
+    number: "03",
     title: "Kuća Jožić",
     category: "WEB APPLICATION",
     descriptionHR:
@@ -131,7 +145,7 @@ const projects = [
     symbol: "↗",
   },
   {
-    number: "03",
+    number: "04",
     title: "Personal Portfolio",
     category: "WEB DEVELOPMENT",
     descriptionHR:
@@ -145,7 +159,7 @@ const projects = [
     symbol: "↗",
   },
   {
-    number: "04",
+    number: "05",
     title: "3D Classroom",
     category: "3D VISUALIZATION",
     descriptionHR:
@@ -159,7 +173,7 @@ const projects = [
     symbol: "▶",
   },
   {
-    number: "05",
+    number: "06",
     title: "Trenerko",
     category: "WEB APPLICATION",
     descriptionHR:
@@ -173,7 +187,7 @@ const projects = [
     symbol: "↗",
   },
   {
-    number: "06",
+    number: "07",
     title: "Exbensive",
     category: "WEB APPLICATION",
     descriptionHR:

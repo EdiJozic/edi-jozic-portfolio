@@ -27,6 +27,13 @@ Travel-planning app with itineraries, expense tracking, saved destinations, and 
 
 **Technologies:** Next.js, TypeScript, Supabase, Anthropic AI
 
+### DevPilot
+Developer workspace for managing projects, tasks, and bugs, with analytics, GitHub activity, and an AI assistant.
+
+**Live website:** https://edi-jozic-portfolio-sskb.vercel.app/
+
+**Technologies:** Next.js, TypeScript, Tailwind CSS, Supabase
+
 ### Trenerko
 Web platform for sports and fitness facilities.
 
@@ -41,7 +48,6 @@ Realistic 3D model of an Informatics classroom created as part of my final thesi
 This portfolio website.
 
 **Technologies:** React, TypeScript, CSS
-
 
 
 
