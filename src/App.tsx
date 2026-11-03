@@ -104,6 +104,19 @@ const content = {
 const projects = [
   {
     number: "01",
+    title: "Triply",
+    category: "TRAVEL PLANNING APP",
+    descriptionHR:
+      "Aplikacija za planiranje putovanja s itinerarima, praćenjem troškova, spremljenim destinacijama i AI suputnikom.",
+    descriptionEN:
+      "A travel-planning app with itineraries, expense tracking, saved destinations, and an AI travel companion.",
+    technologies: ["Next.js", "TypeScript", "Supabase", "Anthropic AI"],
+    type: "website",
+    link: "https://triply-one-xi.vercel.app/",
+    symbol: "↗",
+  },
+  {
+    number: "02",
     title: "Kuća Jožić",
     category: "WEB APPLICATION",
     descriptionHR:
@@ -117,7 +130,7 @@ const projects = [
     symbol: "↗",
   },
   {
-    number: "02",
+    number: "03",
     title: "Personal Portfolio",
     category: "WEB DEVELOPMENT",
     descriptionHR:
@@ -131,7 +144,7 @@ const projects = [
     symbol: "↗",
   },
   {
-    number: "03",
+    number: "04",
     title: "3D Classroom",
     category: "3D VISUALIZATION",
     descriptionHR:
@@ -145,7 +158,7 @@ const projects = [
     symbol: "▶",
   },
   {
-    number: "04",
+    number: "05",
     title: "Trenerko",
     category: "WEB APPLICATION",
     descriptionHR:
@@ -159,7 +172,7 @@ const projects = [
     symbol: "↗",
   },
   {
-    number: "05",
+    number: "06",
     title: "Exbensive",
     category: "WEB APPLICATION",
     descriptionHR:

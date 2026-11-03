@@ -20,6 +20,13 @@ I am particularly interested in web development and currently expanding my knowl
 
 ##  Featured Projects
 
+### Triply
+Travel-planning app with itineraries, expense tracking, saved destinations, and an AI travel companion.
+
+**Live website:** https://triply-one-xi.vercel.app/
+
+**Technologies:** Next.js, TypeScript, Supabase, Anthropic AI
+
 ### Trenerko
 Web platform for sports and fitness facilities.
 
@@ -34,7 +41,6 @@ Realistic 3D model of an Informatics classroom created as part of my final thesi
 This portfolio website.
 
 **Technologies:** React, TypeScript, CSS
-
 
 
 
