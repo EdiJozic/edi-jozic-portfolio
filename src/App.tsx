@@ -140,7 +140,7 @@ const projects = [
       "A digital guide for Kuća Jožić accommodation, featuring a photo gallery, availability calendar, and nearby restaurant and shop recommendations.",
     technologies: ["React", "TypeScript", "Supabase", "Leaflet"],
     type: "website",
-    link: "https://kuca-jozic.vercel.app/",
+    link: "https://kucazaodmorjozic.netlify.app/",
     previewImage: "/kuca-jozic-hero.png",
     symbol: "↗",
   },
